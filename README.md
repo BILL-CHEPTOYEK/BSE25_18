@@ -29,31 +29,8 @@ Backend:
     Mysql – For storing bus, route, and booking data.
     dotenv – For managing environment variables.
 
-Project Structure
 
-bash
-
-Bus-Ticketing-System/
-├── client/           # React frontend
-│   ├── public/       # Public assets like images, index.html
-│   └── src/          # React components and logic
-│       ├── components/ # UI components like forms, buttons
-│       ├── pages/       # Different pages (Home, Booking)
-│       ├── App.js       # Main app logic
-│       └── index.js     # Entry point for React
-├── server/           # Node.js backend
-│   ├── controllers/  # Business logic (routes, booking handling)
-│   ├── models/       # Database models (Buses, Routes, Bookings)
-│   ├── routes/       # API routes (buses, bookings)
-│   ├── .env          # Environment variables
-│   ├── server.js     # Main server logic
-│   └── package.json  # Node.js dependencies
-├── .gitignore        # Files to ignore in version control
-├── README.md         # Project documentation
-└── LICENSE           # Project license
-
-
-Getting Started
+### Getting Started
 
 Follow these steps to set up the Bus Ticketing System on your local machine.
 Prerequisites
