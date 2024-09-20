@@ -52,6 +52,7 @@ Bus-Ticketing-System/
 ├── README.md         # Project documentation
 └── LICENSE           # Project license
 
+
 Getting Started
 
 Follow these steps to set up the Bus Ticketing System on your local machine.
@@ -67,7 +68,7 @@ First, clone the project repository from GitHub:
 
 bash
 
-git clone https://github.com/Group_BSE24-X/Bus-Ticketing-System.git
+git clone https://github.com/BILL-CHEPTOYEK/BSE25_18.git
 cd Bus-Ticketing-System
 
 2. Install Dependencies
@@ -148,7 +149,7 @@ This project follows a Git-based version control workflow:
 GitHub Repository
 
 The GitHub repository for this project is located at:
-https://github.com/Group_BSE24-X/Bus-Ticketing-System.git
+https://github.com/BILL-CHEPTOYEK/BSE25_18.git
 Contributing
 
 We welcome contributions! Here’s how you can help:
