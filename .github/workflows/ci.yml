@@ -14,15 +14,15 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@v3  # Updated to v3
+      uses: actions/checkout@v3  # Ensure this is the latest version
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3  # Updated to v3
+      uses: actions/setup-node@v3  # Ensure this is the latest version
       with:
-        node-version: '16'  # You can specify Node.js version 16 or use '16.x'
+        node-version: '20'  # Specify the latest stable Node.js version
 
     - name: Install dependencies (Backend)
-      working-directory: ./api  # Change this line
+      working-directory: ./api
       run: npm install
 
     - name: Install dependencies (Frontend)
@@ -30,7 +30,7 @@ jobs:
       run: npm install
 
     - name: Run Backend Tests
-      working-directory: ./api  # Change this line
+      working-directory: ./api
       run: npm test
 
     - name: Run Frontend Tests
