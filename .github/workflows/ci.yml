@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -13,24 +13,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Check out code
       uses: actions/checkout@v2
 
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '14'  # Specify your Node.js version
 
-    - name: Install Backend Dependencies
-      working-directory: ./backend
+    - name: Install dependencies (Backend)
+      working-directory: ./api  # Change this line
       run: npm install
 
-    - name: Install Frontend Dependencies
+    - name: Install dependencies (Frontend)
       working-directory: ./frontend
       run: npm install
 
     - name: Run Backend Tests
-      working-directory: ./backend
+      working-directory: ./api  # Change this line
       run: npm test
 
     - name: Run Frontend Tests
@@ -40,3 +40,10 @@ jobs:
     - name: Build Frontend
       working-directory: ./frontend
       run: npm run build
+
+    - name: Deploy to Vercel
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      run: |
+        npm install -g vercel
+        vercel --prod --confirm
