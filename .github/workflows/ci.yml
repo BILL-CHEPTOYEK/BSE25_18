@@ -14,12 +14,12 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Updated to v3
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3  # Updated to v3
       with:
-        node-version: '14'  # Specify your Node.js version
+        node-version: '16'  # You can specify Node.js version 16 or use '16.x'
 
     - name: Install dependencies (Backend)
       working-directory: ./api  # Change this line
