@@ -10,6 +10,8 @@ router.post('/login', userController.login);
 
 // Ticket Routes
 router.post('/', ticketController.createTicket);
+router.get('/', ticketController.getAllTickets); // This should handle GET requests for tickets
+
 
 // Booking Routes
 router.post('/book', bookingController.bookTicket);
