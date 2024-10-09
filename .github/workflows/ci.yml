@@ -1,51 +1,40 @@
-name: CI/CD Pipeline
+name: CI Pipeline
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - main  
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true  # Add this line to enforce Node.js 20
 
     steps:
-    - name: Check out code
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        node-version: '20'  # Specify Node.js 20 version explicitly here
+        python-version: '3.x'
 
-    - name: Install dependencies (Backend)
-      working-directory: ./api  # Assuming the backend directory is api
-      run: npm install
-
-    - name: Install dependencies (Frontend)
-      working-directory: ./frontend
-      run: npm install
-
-    - name: Run Backend Tests
-      working-directory: ./api
-      run: npm test
-
-    - name: Run Frontend Tests
-      working-directory: ./frontend
-      run: npm test
-
-    - name: Build Frontend
-      working-directory: ./frontend
-      run: npm run build
-
-    - name: Deploy to Vercel
-      env:
-        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    - name: Install dependencies
       run: |
-        npm install -g vercel
-        vercel --prod --confirm
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run migrations
+      run: |
+        python manage.py migrate
+
+    - name: Run tests
+      run: |
+        python manage.py test
+
+    - name: Run Flake8
+      run: |
+        flake8 .
+
+    - name: Run Black (Check Formatting)
+      run: |
+        black --check .
