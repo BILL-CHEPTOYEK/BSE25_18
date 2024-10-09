@@ -46,3 +46,7 @@ jobs:
 
     - name: Print Environment Variables
       run: env
+    - name: List files in working directory
+      run: |
+        ls -R .
+    
