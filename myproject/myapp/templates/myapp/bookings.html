@@ -1,0 +1,61 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Booking Confirmation</h2>
+    <form action="{% url 'home' %}" method="post">
+
+        {% csrf_token %}
+        <div class="alert alert-success" role="alert">
+            <h2 class="alert-heading">Your booking has been confirmed!</h2>
+            <p>Thank you for choosing BAZZ Systems.</p>
+        </div>
+
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+            Bill details
+        </button>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Bill Details</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Bus name:</b> {{ book.bus_name }}</li>
+                            <li class="list-group-item"><b>Starting point:</b> {{ book.source }}</li>
+                            <li class="list-group-item"><b>Destination point:</b> {{ book.dest }}</li>
+                            <li class="list-group-item"><b>Number of seats:</b> {{ book.nos }}</li>
+                            <li class="list-group-item"><b>Price:</b> {{ book.price }}</li>
+                            <li class="list-group-item"><b>Cost:</b> {{ cost }}</li>
+                            <li class="list-group-item"><b>Date:</b> {{ book.date }}</li>
+                            <li class="list-group-item"><b>Time:</b> {{ book.time }}</li>
+                        </ul>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-3 text-right">
+            <button type="submit" class="btn btn-primary">OK</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+
+

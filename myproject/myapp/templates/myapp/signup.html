@@ -1,0 +1,71 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 mx-auto" style="margin-top: 70px;">
+            <form action="{% url 'signup' %}" method="post">
+                <h2 class="text-center">Register!</h2>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email-input">Email:</label>
+                    <input name="email" class="form-control" type="email" id="email-input" placeholder="Example@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="username-input">Username:</label>
+                    <input name="name" class="form-control" type="text" id="username-input" placeholder="Bazz123" required>
+                </div>
+                <div class="form-group">
+                    <label for="password-input">Password:</label>
+                    <input name="password" class="form-control" type="password" id="password-input" placeholder="Enter your password" required>
+                </div>
+                <div class="form-group">
+                    <label for="password-confirm-input">Confirm Password:</label>
+                    <input name="password2" class="form-control" type="password" id="password-confirm-input" placeholder="Confirm your password" required>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-success">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% comment %} {% extends 'myapp/base.html' %}
+{% block content %}
+<div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto" style="margin-top: 70px">
+                <form action="{% url 'signup' %}" method="post">
+                    <h2>Sign up!</h2>
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Email:</label>
+                        <div class="col-10">
+                            <input name='email' class="form-control" type="text" id="example-email-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Username:</label>
+                        <div class="col-10">
+                            <input name='name' class="form-control" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Password:</label>
+                        <div class="col-10">
+                            <input name='password' class="form-control" type="text" required>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-success float-right">Sign up</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %} {% endcomment %}

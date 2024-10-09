@@ -1,0 +1,122 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h3>{{ msg }}</h3>
+    <h2>List of Buses</h2>
+    <table class="table table-striped">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th scope="col">BOOKING ID</th>
+                <th scope="col">USER NAME</th>
+                <th scope="col">BUS NAME</th>
+                <th scope="col">SOURCE</th>
+                <th scope="col">DESTINATION</th>
+                <th scope="col">NUM OF SEATS</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">DATE</th>
+                <th scope="col">TIME</th>
+                <th scope="col">STATUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in book_list %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.bus_name }}</td>
+                <td>{{ row.source }}</td>
+                <td>{{ row.dest }}</td>
+                <td>{{ row.nos }}</td>
+                <td>{{ row.price }}</td>
+                <td>{{ row.date }}</td>
+                <td>{{ row.time }}</td>
+                <td>{{ row.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form action="{% url 'cancellings' %}" method="post" class="mt-4">
+        <h3>Choose Bus to Cancel</h3>
+        {% csrf_token %}
+        <div class="form-group row">
+            <label for="bus-id-input" class="col-sm-2 col-form-label">Bus ID</label>
+            <div class="col-sm-5">
+                <input name='bus_id' class="form-control" type="number" id="bus-id-input">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-danger">Cancel Bus</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                {{ error }}
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+
+{% comment %} {% extends 'myapp/base.html' %}
+{% block content %}
+<h3>{{msg}}</h3>
+<h2>List of buses</h2>
+<table class="table table-striped">
+    <thead style="background-color: blue;color: white;">
+    <td>BOOKING ID</td>
+    <td>USER NAME</td>
+    <td>BUS NAME</td>
+    <td>SOURCE</td>
+    <td>DESTINATION</td>
+    <td>NUM OF SEATS</td>
+    <td>PRICE</td>
+    <td>DATE</td>
+    <td>TIME</td>
+    <td>STATUS</td>
+
+
+    </thead>
+
+    {% for row in book_list %}
+    <tr>
+        <td>{{row.id}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.bus_name}}</td>
+        <td>{{row.source}}</td>
+        <td>{{row.dest}}</td>
+        <td>{{row.nos}}</td>
+        <td>{{row.price}}</td>
+        <td>{{row.date}}</td>
+        <td>{{row.time}}</td>
+        <td>{{row.status}}</td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+<form action="{% url 'cancellings' %}" method="post">
+    <h3>Choose bus to book</h3>
+    {% csrf_token %}
+    <div class="col-auto">
+        <label for="example-email-input" class="col-2 col-form-label">Bus ID</label>
+        <div class="col-5">
+            <input name='bus_id' class="form-control" type="number" id="example-email-input">
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="pull-right">
+        <button type="submit" class="btn btn-danger float-left">Cancel bus</button>
+    </div>
+
+
+    {{error}}
+
+</form>
+
+{% endblock %} {% endcomment %}
