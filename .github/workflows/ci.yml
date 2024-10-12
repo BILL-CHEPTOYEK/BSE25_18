@@ -9,27 +9,54 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.9, 3.10]  # Avoid Python 3.12 for compatibility
+        python-version: [3.9]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          
+      - name: Purge pip cache
+        run: pip cache purge
+        
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+      - name: Install graphviz development libraries
+        run: sudo apt-get install graphviz graphviz-dev
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
+          pip install -r myproject/requirements.txt  # Make sure to point to your requirements file
 
-    - name: Upgrade system packages
-      run: sudo apt-get update && sudo apt-get upgrade -y
+      - name: Debug:List Files
+        run: ls -R myproject  # List files to ensure manage.py is present
+      
+      - name: Run Tests
+        run: |
+          cd myproject  # Change to the correct directory
+          python manage.py test  # Run the tests
 
-    - name: Force reinstall distutils
-      run: sudo apt-get install --reinstall python3-distutils
+      - name: Clear Python Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
-    - name: Clear and Recreate Virtual Environment
-      run: |
-        rm -rf venv
-        python -m venv venv
-        source venv
+      - name: Install aiobotocore manually
+        run: pip install aiobotocore==2.4.2
+
+        
+    
