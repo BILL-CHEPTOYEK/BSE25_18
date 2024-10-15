@@ -15,8 +15,8 @@ To set up the project locally, follow these steps:
 
 ##1. Clone the Repository:
    
- `git clone https://github.com/yourusername/bus-ticket-booking-system.git
-cd bus-ticket-booking-system
+ `git clone https://github.com/BILL-CHEPTOYEK/BSE25_18.git
+cd BSE25_18
 `
 
 
