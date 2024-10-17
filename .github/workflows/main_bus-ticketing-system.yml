@@ -27,7 +27,6 @@ jobs:
          sudo apt-get update
          sudo apt-get install -y graphviz graphviz-dev
 
-
       - name: Create and start virtual environment
         run: |
           python -m venv venv
@@ -56,7 +55,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write  # This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
@@ -67,13 +66,11 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      
-      - name: Login to Azure
-        uses: azure/login@v2
+      # Add the Azure login step here
+      - name: 'Login to Azure'
+        uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_38D59504921147718B83FB0328C04F90 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_1620E776E6B54B31A4DA80359F117054 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6EEB97FC3866478E9D5121C9B7C2EF94 }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
@@ -81,4 +78,3 @@ jobs:
         with:
           app-name: 'bus-ticketing-system'
           slot-name: 'Production'
-          
