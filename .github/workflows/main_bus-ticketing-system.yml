@@ -78,4 +78,3 @@ jobs:
         with:
           app-name: 'bus-ticketing-system'
           slot-name: 'Production'
-          package: ./myproject/manage.py
