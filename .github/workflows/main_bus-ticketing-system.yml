@@ -24,8 +24,8 @@ jobs:
 
       - name: Install system dependencies
         run: |
-         sudo apt-get update
-         sudo apt-get install -y graphviz graphviz-dev
+          sudo apt-get update
+          sudo apt-get install -y graphviz graphviz-dev
 
       - name: Create and start virtual environment
         run: |
@@ -65,6 +65,10 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+
+      - name: Set up deployment
+        run: |
+          cp myproject/requirements.txt . # Copy the requirements to root if needed
 
       # Add the Azure login step here
       - name: 'Login to Azure'
