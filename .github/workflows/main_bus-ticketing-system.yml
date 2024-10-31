@@ -1,7 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-# More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
-
 name: Build and deploy Python app to Azure Web App - bus-ticketing-system
 
 on:
@@ -24,8 +20,8 @@ jobs:
 
       - name: Install system dependencies
         run: |
-         sudo apt-get update
-         sudo apt-get install -y graphviz graphviz-dev
+          sudo apt-get update
+          sudo apt-get install -y graphviz graphviz-dev
 
       - name: Create and start virtual environment
         run: |
@@ -37,16 +33,14 @@ jobs:
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
-      - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+      - name: Zip entire project for deployment
+        run: zip -r release.zip ./*   # Zips all files and directories in the root
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
         with:
           name: python-app
-          path: |
-            release.zip
-            !venv/
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,7 +49,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write  # This is required for requesting the JWT
+      id-token: write  # Required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
@@ -66,7 +60,7 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      # Add the Azure login step here
+      # Azure login step
       - name: 'Login to Azure'
         uses: azure/login@v1
         with:
