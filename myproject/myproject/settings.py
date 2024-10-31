@@ -25,7 +25,7 @@ SECRET_KEY = 'betsff(e3$v-n@gc53*afg^r36tiz$4#lujpjxub1!(@zkxfl9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bus-ticketing-system.azurewebsites.net', 'localhost']
+ALLOWED_HOSTS = ['bus-ticketing-system.azurewebsites.net', '127.0.0.1']
 
 
 # Application definition
