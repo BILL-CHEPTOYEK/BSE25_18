@@ -37,7 +37,7 @@ jobs:
       - name: Install graphviz development libraries
         run: sudo apt-get install graphviz graphviz-dev
 
-          pip install -r myproject/requirements.txt  # Make sure to point to your requirements file
+          pip install -r requirements.txt  # Make sure to point to your requirements file
 
       - name: Debug:List Files
         run: ls -R myproject  # List files to ensure manage.py is present
