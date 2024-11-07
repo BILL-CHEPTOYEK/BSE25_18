@@ -52,7 +52,7 @@ cd BSE25_18
   
 
 ##8.Run Tests:
-  Execute the unit tests for the application using:
+  Execute the unit tests for the application using, incase there are any:
   
   `python manage.py test`
   
